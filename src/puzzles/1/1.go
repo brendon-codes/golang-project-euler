@@ -11,8 +11,11 @@ package main
 import "os"
 import "fmt"
 
+import "../lib/iterint"
+
 
 func main () () {
+    iterint.test()
     m := 1000
     incrs := []int{3, 5}
     cycler := func (incr int) (int) {

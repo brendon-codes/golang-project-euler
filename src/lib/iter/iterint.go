@@ -1,8 +1,14 @@
 
-package iterint
+package iter
 
 import "os"
 import "fmt"
+
+
+func test () (bool) {
+    fmt.Printf("ITERINT")
+    return true
+}
 
 
 type IterInt struct {
