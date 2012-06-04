@@ -1,5 +1,5 @@
 
-package main
+package iterint
 
 import "os"
 import "fmt"
@@ -45,19 +45,20 @@ func NewIterInt (callback func (r IterInt) ()) (IterInt) {
 }
 
 
-func main () () {
-    iter := NewIterInt(func (r IterInt) {
-        foo(r)
-    })
-    for iter.next() {
-        fmt.Printf("%d\n", iter.value())
-    }
-    os.Exit(0)
-}
+// func main () () {
+//     iter := NewIterInt(func (r IterInt) {
+//         foo(r)
+//     })
+//     for iter.next() {
+//         fmt.Printf("%d\n", iter.value())
+//     }
+//     os.Exit(0)
+// }
 
 
-func foo (iter IterInt) () {
-    for i := 0; i < 10; i++ {
-        iter.yield(i)
-    }
-}
+// func foo (iter IterInt) () {
+//     for i := 0; i < 10; i++ {
+//         iter.yield(i)
+//     }
+// }
+
