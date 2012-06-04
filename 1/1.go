@@ -13,19 +13,15 @@ import "fmt"
 
 
 func main () () {
-    fmt.Printf("Mapper: %d\n", mapper(foo, []int{1, 3, 5}))
-    //fmt.Printf("Sum: %d\n", sum([]int{5, ;10}))
-    //m := 10
-    //incrs := []int{3, 5}
-    //for _, incr := range incrs {
-    //    fmt.Printf("Total: %d\n", cycle(0, m, incr))
-    //}
+    m := 1000
+    incrs := []int{3, 5}
+    cycler := func (incr int) (int) {
+        return cycle(0, m, incr)
+    }
+    mapped := mapper(cycler, incrs)
+    summed := sum(mapped)
+    fmt.Printf("%d\n", summed)
     os.Exit(0)
-}
-
-
-func foo (i int) (int) {
-    return i + 2
 }
 
 
