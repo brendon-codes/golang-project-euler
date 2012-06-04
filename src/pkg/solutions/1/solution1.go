@@ -6,16 +6,16 @@
  * Problem: 1
  */
 
-package main
+package solution1
 
 import "os"
 import "fmt"
 
-import "../lib/iterint"
+import "lib/iter"
 
 
 func main () () {
-    iterint.test()
+    iter.iterint.test()
     m := 1000
     incrs := []int{3, 5}
     cycler := func (incr int) (int) {
