@@ -21,6 +21,14 @@ all: clean
 	done;
 
 
+run.%: clean-quiet.%
+	@go run ${src_dir}/${solutions_dir}/${*}/${*}.${ext}
+
+
+clean-quiet.%:
+	@rm -f ${bin_dir}/${out_prefix}.${*}
+
+
 solution.%: clean.%
 	@echo "Building ${*}."
 	@go build -o ${bin_dir}/${out_prefix}.${*} ${src_dir}/${solutions_dir}/${*}/${*}.${ext}
