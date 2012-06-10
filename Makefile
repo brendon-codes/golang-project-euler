@@ -34,6 +34,7 @@ clean.%:
 clean:
 	@for i in $$(find ${bin_dir}/ -mindepth 1 -maxdepth 1 -type f -name "${out_prefix}-*"); do \
 		echo "Cleaning $$(echo $$(basename $${i}) | awk -F '-' '{ print $$NF }')."; \
+		rm -f $${i}; \
 	done;
 
 
