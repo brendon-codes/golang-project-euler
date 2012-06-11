@@ -13,11 +13,11 @@ import "fmt"
 
 
 func main () () {
-    m := 4000000
-    v1 := 1
-    v2 := 2
-    v := v1
-    a := 0
+    const m int = 4000000
+    var v1 int = 1
+    var v2 int = 2
+    var v int = v1
+    var a int = 0
     for v <= m {
         v = v1 + v2
         v1 = v2
