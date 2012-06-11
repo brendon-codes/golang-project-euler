@@ -21,18 +21,18 @@ import "math"
 
 
 func main () () {
-    const mLow uint64 = 100
-    const mHigh uint64 = 999
-    var o uint64 = 0
-    var i, j, p uint64
+    const mLow uint32 = 100
+    const mHigh uint32 = 999
+    var o uint32 = 0
+    var i, j, p uint32
     var s, r string
     for i = mHigh; i >= mLow; i-- {
         for j = mHigh; j >= mLow; j-- {
             p = i * j
-            s = strconv.FormatUint(p, 10)
+            s = strconv.FormatUint(uint64(p), 10)
             r = reverse_str(s)
             if s == r {
-                o = uint64(math.Max(float64(o), float64(p)))
+                o = uint32(math.Max(float64(o), float64(p)))
             }
         }
     }
