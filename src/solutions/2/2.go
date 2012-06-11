@@ -13,11 +13,11 @@ import "fmt"
 
 
 func main () () {
-    const m int = 4000000
-    var v1 int = 1
-    var v2 int = 2
-    var v int = v1
-    var a int = 0
+    const m uint32 = 4000000
+    var v1 uint32 = 1
+    var v2 uint32 = 2
+    var v uint32 = v1
+    var a uint32 = 0
     for v <= m {
         v = v1 + v2
         v1 = v2
