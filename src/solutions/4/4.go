@@ -17,7 +17,6 @@ package main
 import "os"
 import "fmt"
 import "strconv"
-import "math"
 
 
 func main () () {
@@ -29,10 +28,12 @@ func main () () {
     for i = mHigh; i >= mLow; i-- {
         for j = mHigh; j >= mLow; j-- {
             p = i * j
-            s = strconv.FormatUint(uint64(p), 10)
-            r = reverse_str(s)
-            if s == r {
-                o = uint32(math.Max(float64(o), float64(p)))
+            if p > o {
+                s = strconv.FormatUint(uint64(p), 10)
+                r = reverse_str(s)
+                if s == r {
+                    o = p
+                }
             }
         }
     }
