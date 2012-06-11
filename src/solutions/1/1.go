@@ -13,12 +13,12 @@ import "fmt"
 
 
 func main () () {
-    const m int = 1000
-    var i int
-    var r map[int] bool = map[int] bool {}
-    var a int = 0
-    var incrs []int = []int{3, 5}
-    var v int
+    const m uint32 = 1000
+    var i uint32
+    var r map[uint32] bool = map[uint32] bool {}
+    var a uint32 = 0
+    var incrs []uint32 = []uint32{3, 5}
+    var v uint32
     for _, v = range incrs {
         for i = v; i < m; i += v {
             if !r[i] {
