@@ -29,17 +29,24 @@ package main
 
 import "os"
 import "fmt"
+import "math"
 import "math/big"
 import crypto_rand "crypto/rand"
 import math_rand "math/rand"
 
 
 func main () () {
-    //const n uint32 = 19
-    //const nMin uint32 = 2
-    //fmt.Printf("%d\n", random(3, 51))
-    //fmt.Printf("%d\n", random(3, 51))
-    fmt.Printf("%d\n", random(3, 10))
+    const n uint32 = 19
+    const nMin uint32 = 2
+    var x float64
+    var m float64
+    var a float64
+    var t float64
+    a = float64(random(nMin, n - 1))
+    x = math.Pow(float64(a), float64(n))
+    m = math.Mod(x, float64(n))
+    t = math.Mod(a, float64(n))
+    fmt.Printf("%f %f\n", m, t)
     os.Exit(0)
 }
 
