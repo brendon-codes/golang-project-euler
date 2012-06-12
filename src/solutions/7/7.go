@@ -29,36 +29,39 @@ package main
 
 import "os"
 import "fmt"
-import "math"
 import "math/big"
-import crypto_rand "crypto/rand"
-import math_rand "math/rand"
 
 
 func main () () {
-    const n uint32 = 19
-    const nMin uint32 = 2
-    var x float64
-    var m float64
-    var a float64
-    var t float64
-    a = float64(random(nMin, n - 1))
-    x = math.Pow(float64(a), float64(n))
-    m = math.Mod(x, float64(n))
-    t = math.Mod(a, float64(n))
-    fmt.Printf("%f %f\n", m, t)
+    fmt.Printf("%s\n", fermat(0))
+    fmt.Printf("%s\n", fermat(1))
+    fmt.Printf("%s\n", fermat(2))
+    fmt.Printf("%s\n", fermat(3))
+    fmt.Printf("%s\n", fermat(4))
     os.Exit(0)
 }
 
 
-func random (min uint32, max uint32) (uint32) {
-    const bits uint8 = 32
-    var r *big.Int
-    var o uint32
-    r, _ = crypto_rand.Prime(crypto_rand.Reader, int(bits))
-    math_rand.Seed(r.Int64())
-    o = (uint32(math_rand.Int31n(int32(max - min))) + min)
-    return o
+func fermat (n uint64) (bool) {
+    var yes uint8 = 1
+    var no uint8 = 2
+    var primes map[uint64]uint8 = map[uint64]uint8 {
+        0: no, 4: no,
+        1: yes, 2: yes, 3: yes,
+    }
+    if primes[n] == yes {
+        return true
+    } else if primes[n] == no {
+        return false
+    }
+    var a uint64 = (((n - 1) - 2) / 2)
+    var aBig *big.Int = big.NewInt(int64(a))
+    var nBig *big.Int = big.NewInt(int64(n))
+    var aToNBig *big.Int = new(big.Int).Exp(aBig, nBig, nil)
+    var mod1Big *big.Int = new(big.Int).Mod(aToNBig, nBig)
+    var mod2Big *big.Int = new(big.Int).Mod(aBig, nBig)
+    var isPrime bool = (mod1Big.Cmp(mod2Big) == 0)
+    return isPrime
 }
 
 
