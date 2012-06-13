@@ -29,39 +29,45 @@ package main
 
 import "os"
 import "fmt"
-import "math/big"
 
 
 func main () () {
-    fmt.Printf("%s\n", fermat(0))
-    fmt.Printf("%s\n", fermat(1))
-    fmt.Printf("%s\n", fermat(2))
-    fmt.Printf("%s\n", fermat(3))
-    fmt.Printf("%s\n", fermat(4))
+    const count uint64 = 1000000
+    const m uint64 = 10001
+    var z *[]uint64 = seives(count)
+    var x []uint64 = *z
+    var o uint64
+    if uint64(len(x)) >= m {
+        o = x[m - 1]
+    } else {
+        o = 0
+    }
+    fmt.Printf("%d\n", o)
     os.Exit(0)
 }
 
 
-func fermat (n uint64) (bool) {
-    var yes uint8 = 1
-    var no uint8 = 2
-    var primes map[uint64]uint8 = map[uint64]uint8 {
-        0: no, 4: no,
-        1: yes, 2: yes, 3: yes,
+func seives (count uint64) (*[]uint64) {
+    const offset uint64 = 2
+    var s []uint64 = make([]uint64, count, count)
+    var z []uint64 = make([]uint64, 0, 0)
+    var i, j, r, t, a uint64
+    for i = 0; i < count; i++ {
+        s[i] = i + offset
     }
-    if primes[n] == yes {
-        return true
-    } else if primes[n] == no {
-        return false
+    for j = 0; j < uint64(len(s)); j++ {
+        r = s[j]
+        if r != 0 {
+            for a = j + r; a < uint64(len(s)); a += r {
+                s[a] = uint64(0)
+            }
+        }
     }
-    var a uint64 = (((n - 1) - 2) / 2)
-    var aBig *big.Int = big.NewInt(int64(a))
-    var nBig *big.Int = big.NewInt(int64(n))
-    var aToNBig *big.Int = new(big.Int).Exp(aBig, nBig, nil)
-    var mod1Big *big.Int = new(big.Int).Mod(aToNBig, nBig)
-    var mod2Big *big.Int = new(big.Int).Mod(aBig, nBig)
-    var isPrime bool = (mod1Big.Cmp(mod2Big) == 0)
-    return isPrime
+    for t = 0; t < uint64(len(s)); t++ {
+        if s[t] != 0 {
+            z = append(z, s[t])
+        }
+    }
+    return &z
 }
-
 
