@@ -35,10 +35,9 @@ func main () () {
     const count uint64 = 1000000
     const m uint64 = 10001
     var z *[]uint64 = seives(count)
-    var x []uint64 = *z
     var o uint64
-    if uint64(len(x)) >= m {
-        o = x[m - 1]
+    if uint64(len(*z)) >= m {
+        o = (*z)[m - 1]
     } else {
         o = 0
     }
